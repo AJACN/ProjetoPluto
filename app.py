@@ -41,19 +41,20 @@ def verAluno():
 
     return jsonify(alunos), 200
 
-# ------ MÉTODO GET - LISTA DE ALUNOS -------
-@app.route('/alunos/lista', methods=['GET'])
-def listaAluno():
-    alunos = []
+# ------ MÉTODO GET - LISTA DE CPFs DE ALUNOS -------
+@app.route('/alunos/cpf', methods=['GET'])
+def listar_cpfs():
+    cpfs = []
     lista = db.collection('alunos').stream()
 
     for item in lista:
-        alunos.append(item.to_dict())
+        aluno = item.to_dict()
+        cpfs.append(aluno.get('cpf'))  # Extrai apenas o CPF do aluno
 
-    if alunos:
-        return jsonify(alunos), 200
-    else:
-        return jsonify({'message':'Erro! Nenhum aluno encontrado!'}), 404
+    if not cpfs:
+        return jsonify({'message': 'Erro! Nenhum aluno encontrado!'}), 404
+
+    return jsonify(cpfs), 200
 
 
 # -------- MÉTODO GET - ALUNO POR ID --------
