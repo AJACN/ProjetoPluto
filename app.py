@@ -119,7 +119,7 @@ def alterarAluno(id):
 # ------- MÉTODO DELETE - EXCLUIR ALUNO -------
 @app.route('/alunos/<id>', methods=['DELETE'])
 def deletarAluno(id):
-    doc_ref = db.collection('riddles').document(id)
+    doc_ref = db.collection('alunos').document(id)
     doc = doc_ref.get()
 
     if not doc.exists:
