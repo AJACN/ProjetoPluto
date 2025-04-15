@@ -39,6 +39,7 @@ def verAluno():
     if not alunos:
         return jsonify({'message':'Erro! Nenhum aluno encontrado!'}), 404
 
+    return jsonify(alunos), 200
 
 # ------ MÉTODO GET - LISTA DE ALUNOS -------
 @app.route('/alunos/lista', methods=['GET'])
@@ -128,4 +129,4 @@ def deletarAluno(id):
     return jsonify({'message':'Aluno deletado com sucesso!'})
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
